@@ -10,6 +10,9 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Steeltoe.Management.EndpointCore">
+      <Version>2.1.0</Version>
+    </PackageReference>
   </ItemGroup>
 
 </Project>
