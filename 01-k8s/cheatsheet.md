@@ -7,7 +7,10 @@
 4. Abort request and add a service: `kubectl apply -f services/simple-service.yml`
 5. Wait for LoadBalancer to be provisioned and run `./02-scripts/simple-service-service.sh`
 6. Scale `kubectl scale --replicas=40 deployments/simple-service` and observe the results
-7. Scale back down to 3
+7. Scale back down to 5
+8. Perform a rolling update: `kubectl set image deployments/simple-service simple-service=evenh/simple-service:2.0.0`
+    - Show history: `kubectl rollout history deployment/simple-service`
+    - Perform rollback `kubectl rollout undo deployment/simple-service`
 
 ## customer-service
 
