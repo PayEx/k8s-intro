@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: customer-service
+  namespace: default
+spec:
+  selector:
+    app: customer-service
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+  # Makes the service only available internally
+  type: ClusterIP

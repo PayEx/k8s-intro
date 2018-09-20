@@ -8,3 +8,10 @@
 5. Wait for LoadBalancer to be provisioned and run `./02-scripts/simple-service-service.sh`
 6. Scale `kubectl scale --replicas=40 deployments/simple-service` and observe the results
 7. Scale back down to 3
+
+## customer-service
+
+1. Deploy database secret: `kubectl apply -f secrets/customer-secret.yml`
+2. Deploy service: `kubectl apply -f deployments/customer-service.yml -f services/customer-service.yml`
+3. SSH into a random pod: `kubectl exec -it $(kubectl get pods -l app=simple-service -o jsonpath='{.items[0].metadata.name}') -- /bin/bash`
+4. See that we can reach the customer service: `curl -D - http://customer-service/api/customers; echo`
