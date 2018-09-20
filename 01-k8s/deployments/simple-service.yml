@@ -1,0 +1,33 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: simple-service
+  name: simple-service
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: simple-service
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: simple-service
+        version: v1
+    spec:
+      containers:
+      - image: evenh/simple-service:latest
+        name: simple-service
+        ports:
+        - containerPort: 9000
+        resources:
+          limits:
+            cpu: "0.1"
+            memory: "64Mi"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 9000
+          initialDelaySeconds: 3
+          periodSeconds: 3

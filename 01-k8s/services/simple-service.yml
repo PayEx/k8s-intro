@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: simple-service
+  namespace: default
+spec:
+  selector:
+    app: simple-service
+  ports:
+    - name: http
+      port: 80
+      targetPort: 9000
+  # Makes the service available outside the cluster (depends on who's hosting the cluster)
+  type: LoadBalancer
