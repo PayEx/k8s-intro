@@ -1,5 +1,6 @@
 package com.payex.demo.shoppingcart.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.data.annotation.Id;
@@ -8,6 +9,7 @@ public class Cart {
   @Id
   public String id;
   public List<String> items = new ArrayList<>();
+  @JsonIgnore
   public long ownerId;
 
   public Cart() {
