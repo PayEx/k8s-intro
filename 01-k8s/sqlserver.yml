@@ -1,0 +1,63 @@
+# It is not recommended to run databases in containers
+# 
+# In this case, it's used for demonstration purposes only (with no persistence)
+
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: ms-sql
+  name: ms-sql
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: ms-sql
+      role: database
+  template:
+    metadata:
+      labels:
+        app: ms-sql
+        role: database
+    spec:
+      containers:
+      - image: microsoft/mssql-server-linux:2017-latest
+        name: ms-sql
+        env:
+          - name: ACCEPT_EULA
+            value: "Y"
+          - name: SA_PASSWORD
+            value: "PayexDemo123"
+        ports:
+        - name: mssql
+          containerPort: 1433
+
+        resources:
+          limits:
+            cpu: "2"
+            memory: "4Gi"
+        livenessProbe:
+          tcpSocket:
+            port: mssql
+          initialDelaySeconds: 15
+          periodSeconds: 20
+        readinessProbe:
+          tcpSocket:
+            port: mssql
+          initialDelaySeconds: 5
+          periodSeconds: 10
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: ms-sql
+  namespace: default
+spec:
+  selector:
+    app: ms-sql
+  ports:
+    - name: mssql
+      port: 1433
+  type: ClusterIP
