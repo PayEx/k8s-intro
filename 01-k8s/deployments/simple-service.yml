@@ -17,7 +17,7 @@ spec:
         version: v1
     spec:
       containers:
-      - image: evenh/simple-service:latest
+      - image: evenh/simple-service:1.0.0
         name: simple-service
         ports:
         - containerPort: 9000

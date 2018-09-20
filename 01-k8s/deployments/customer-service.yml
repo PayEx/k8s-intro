@@ -17,7 +17,7 @@ spec:
         version: v1
     spec:
       containers:
-      - image: evenh/customer-service:latest
+      - image: evenh/customer-service:1.0.0
         name: customer-service
         env:
         - name: ConnectionStrings__default
