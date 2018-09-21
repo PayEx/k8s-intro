@@ -1,44 +1,52 @@
 package com.payex.demo.shoppingcart.service;
 
-import static org.springframework.http.MediaType.APPLICATION_JSON;
-import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8;
+import static java.util.Collections.emptyList;
+import static org.springframework.http.HttpMethod.GET;
 
 import com.payex.demo.shoppingcart.domain.Customer;
 import java.util.List;
 import java.util.Optional;
-import org.springframework.http.HttpStatus;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.reactive.function.client.WebClient;
-import reactor.core.publisher.Mono;
+import org.springframework.web.client.RestTemplate;
 
 @Service
 public class CustomerService {
-  private final WebClient customerRegistry;
+  private static final Logger log = LoggerFactory.getLogger(CustomerService.class);
+  private final RestTemplate customerRegistry;
 
-  public CustomerService(WebClient customerRegistry) {
+  public CustomerService(RestTemplate customerRegistry) {
     this.customerRegistry = customerRegistry;
   }
 
   public Optional<Customer> findById(long id) {
-    return customerRegistry.get()
-        .uri("/api/customers/" + id)
-        .accept(APPLICATION_JSON, APPLICATION_JSON_UTF8)
-        .retrieve()
-        .onStatus(
-            httpStatus -> httpStatus.equals(HttpStatus.NOT_FOUND),
-            clientResponse -> Mono.justOrEmpty(new IllegalArgumentException("Customer with id " + id + " doesn't exist")))
-        .bodyToMono(Customer.class)
-        .blockOptional();
+    try {
+      return Optional.ofNullable(customerRegistry.getForObject("/api/customers/" + id, Customer.class));
+    } catch (Exception ioe) {
+      log.info("Caught exception while fetching customer {}", id, ioe);
+    }
+
+    return Optional.empty();
   }
 
   public List<Customer> findAll() {
-    return customerRegistry.get()
-        .uri("/api/customers")
-        .accept(APPLICATION_JSON, APPLICATION_JSON_UTF8)
-        .retrieve()
-        .bodyToFlux(Customer.class)
-        .collectList()
-        .block();
+    try {
+      final ResponseEntity<List<Customer>> customers = customerRegistry.exchange(
+          "/api/customers", GET, null, new ParameterizedTypeReference<List<Customer>>() {}
+      );
+
+      if (customers.hasBody()) {
+        return customers.getBody();
+      }
+
+    } catch (Exception ioe) {
+      log.info("Caught exception while fetching all customers", ioe);
+    }
+
+    return emptyList();
   }
 
 }

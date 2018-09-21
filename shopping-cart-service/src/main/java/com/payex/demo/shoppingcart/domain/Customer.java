@@ -1,5 +1,8 @@
 package com.payex.demo.shoppingcart.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Customer {
   private long id;
   private String firstName;

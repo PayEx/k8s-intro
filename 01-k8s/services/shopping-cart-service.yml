@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: shopping-cart-service
+  namespace: default
+spec:
+  selector:
+    app: shopping-cart-service
+  ports:
+    - name: http
+      port: 80
+      targetPort: 3400
+  # Makes the service only available internally
+  type: ClusterIP

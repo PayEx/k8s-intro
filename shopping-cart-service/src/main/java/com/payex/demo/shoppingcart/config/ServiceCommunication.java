@@ -1,15 +1,16 @@
 package com.payex.demo.shoppingcart.config;
 
+import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.client.RestTemplate;
 
 @Configuration
 public class ServiceCommunication {
   @Bean
-  WebClient customerRegistry(WebClient.Builder builder, AppConfig config) {
+  RestTemplate customerRegistry(RestTemplateBuilder builder, AppConfig config) {
     return builder
-        .baseUrl(config.getCustomerRegistryBaseUrl())
+        .rootUri(config.getCustomerRegistryBaseUrl())
         .build();
   }
 }

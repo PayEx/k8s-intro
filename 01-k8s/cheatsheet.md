@@ -18,3 +18,8 @@
 2. Deploy service: `kubectl apply -f deployments/customer-service.yml -f services/customer-service.yml`
 3. SSH into a random pod: `kubectl exec -it $(kubectl get pods -l app=simple-service -o jsonpath='{.items[0].metadata.name}') -- /bin/bash`
 4. See that we can reach the customer service: `curl -D - http://customer-service/api/customers; echo`
+
+## shopping-cart-service
+
+1. Deploy config: `kubectl apply -f configmaps/shopping-cart-config.yml`
+2. Deploy service: `kubectl apply -f deployments/shopping-cart-service.yml -f services/shopping-cart-service.yml`

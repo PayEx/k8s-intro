@@ -1,0 +1,10 @@
+   _
+    \________
+ ~   \######/
+  ~   |####/
+ ~    |____.
+______o____o__________
+shopping-cart-service \_______
+
+
+Running Spring Boot ${spring-boot.version}

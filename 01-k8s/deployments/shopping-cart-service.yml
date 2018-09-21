@@ -1,0 +1,55 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: shopping-cart-service
+  name: shopping-cart-service
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: shopping-cart-service
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: shopping-cart-service
+        version: v1
+    spec:
+      containers:
+      - image: evenh/shopping-cart-service:1.0.0
+        name: shopping-cart-service
+        env:
+        - name: SPRING_DATA_MONGODB_URI
+          valueFrom:
+            configMapKeyRef:
+              name: shopping-cart-config
+              key: mongodbConnectionUri
+        - name: SPRING_PROFILES_ACTIVE
+          valueFrom:
+            configMapKeyRef:
+              name: shopping-cart-config
+              key: activeProfiles
+        - name: CART_CUSTOMER_REGISTRY_BASE_URL
+          valueFrom:
+            configMapKeyRef:
+              name: shopping-cart-config
+              key: cartUrl
+        ports:
+        - containerPort: 3400
+        resources:
+          limits:
+            cpu: "1"
+            memory: "768Mi"
+        livenessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 3400
+          initialDelaySeconds: 30
+          periodSeconds: 3
+        readinessProbe:
+          httpGet:
+            path: /api/customers/1/cart
+            port: 3400
+          initialDelaySeconds: 35
+          periodSeconds: 10

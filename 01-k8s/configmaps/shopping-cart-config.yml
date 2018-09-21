@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: shopping-cart-config
+  namespace: default
+data:
+  # 'mongodb' as a host would have been sufficient, but for demo purposes let's use the fuller DNS name
+  mongodbConnectionUri: mongodb://mongodb.default.svc.cluster.local:27017/carts
+  activeProfiles: production,k8s
+  cartUrl: http://customer-service
