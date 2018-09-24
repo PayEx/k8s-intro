@@ -1,0 +1,5 @@
+# Custom configuration for cert-manager chart
+ingressShim:
+  extraArgs:
+    - --default-issuer-name=letsencrypt-prod
+    - --default-issuer-kind=ClusterIssuer

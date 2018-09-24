@@ -1,0 +1,5 @@
+rbac:
+  create: true
+controller:
+  config:
+    proxy-body-size: "1g"
