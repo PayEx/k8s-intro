@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="dashboard">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="//design.payex.com/v/0.10.20/styles/px.css" />
+    <title>Customer Dashboard</title>
+</head>
+<body ng-cloak>
+    <!-- Topbar -->
+    <div class="topbar">
+        <a href="/" class="topbar-logo"></a>
+    </div>
+    
+    <!-- Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6" ng-controller="CustomerCtrl">
+                <!-- Add new customer dialog -->
+                <div class="dialog" id="new-customer-dialog">
+                    <section>
+                        <header>
+                            <h5>New customer</h5>
+                            <a href="#" class="dialog-close">
+                                <i class="material-icons">close</i>
+                            </a>
+                        </header>
+                        <div class="dialog-body">
+                            <form ng-submit="add(customer)">
+                                <div class="form-group">
+                                    <label for="first-name">First name</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="first-name" placeholder="Enter a first name" autoComplete="given-name" ng-model="customer.firstName" />
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-submit="add(customer)">
+                                    <label for="last-name">Last name</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="last-name" placeholder="Enter a last name" autoComplete="family-name" ng-model="customer.lastName" />
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <footer>
+                            <button class="btn btn-secondary" type="button" data-dialog-close="new-customer-dialog">Cancel</button>
+                            <button class="btn btn-primary" type="button" ng-click="add(customer)" data-dialog-close="new-customer-dialog">Add customer</button>
+                        </footer>
+                    </section>
+                </div>
+                
+                <!-- All customers -->
+                <h2>Customers <button data-dialog-open="new-customer-dialog" class="btn btn-sm btn-primary">Add new</button></h2>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">First Name</th>
+                            <th scope="col">Last Name</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="customer in customers">
+                            <th ng-click="select(customer.id)" scope="row">{{ customer.id }}</th>
+                            <td ng-click="select(customer.id)">{{ customer.firstName }}</td>
+                            <td ng-click="select(customer.id)">{{ customer.lastName }}</td>
+                            <td>
+                                <button class="btn btn-danger" type="button" ng-click="delete(customer.id)">
+                                    <i class="material-icons">delete</i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="col-md-6" ng-controller="CartCtrl">
+                <h2 ng-show="!customer">Cart contents</h2>
+                <h2 ng-show="customer">{{ customer.firstName }}'s shopping cart</h2>
+                <div ng-hide="cart">
+                    <div class="alert alert-neutral">
+                        <i class="material-icons alert-icon">info</i>
+                        <p>Please select a customer</p>
+                    </div>
+                </div>
+                
+                <div ng-show="cart">
+                    <div class="alert alert-neutral" ng-if="cart.items.length === 0">
+                        <i class="material-icons alert-icon">info</i>
+                        <p>{{ customer.firstName }} {{ customer.lastName }} doesn't have anything in his shopping cart</p>
+                    </div>
+                    
+                    <!-- Add new todo -->
+                    <form ng-submit="add(item)">
+                        <label for="item">New item</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" ng-model="item" id="item" placeholder="PayEx Umbrella One-Size" autocomplete="off" value>
+                            <div class="input-group-btn">
+                                <button type="submit" class="btn btn-primary" ng-disabled="item.length == 0">Add</button>
+                            </div>
+                        </div>
+                    </form>
+                    
+                    <div ng-if="cart.items.length > 0">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in cart.items">
+                                    <td>{{ item }}</td>
+                                    <td>
+                                        <button class="btn btn-danger" type="button" ng-click="delete(item)">
+                                            <i class="material-icons">delete</i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.2/angular.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.2/angular-loader.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.2/angular-resource.min.js"></script>
+    <script src="/customers.js"></script>
+    <script src="//design.payex.com/v/0.10.20/scripts/px-script.js"></script>
+</body>
+</html>
