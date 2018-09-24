@@ -8,8 +8,9 @@
   "private": true,
   "dependencies": {
     "express": "^4.16.3",
-    "express-http-proxy": "^1.4.0",
+    "express-http-proxy": "^0.7.1",
     "zipkin": "^0.14.2",
-    "zipkin-instrumentation-express": "^0.14.2"
+    "zipkin-instrumentation-express": "^0.14.2",
+    "zipkin-transport-http": "^0.14.2"
   }
 }
