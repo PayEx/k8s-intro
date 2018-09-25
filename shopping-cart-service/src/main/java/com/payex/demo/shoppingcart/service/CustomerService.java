@@ -49,4 +49,8 @@ public class CustomerService {
     return emptyList();
   }
 
+  public boolean isAvailable() {
+    final ResponseEntity<String> status = customerRegistry.getForEntity("/health", String.class);
+    return status.getStatusCode().is2xxSuccessful();
+  }
 }

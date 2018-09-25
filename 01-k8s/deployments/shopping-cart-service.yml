@@ -49,7 +49,7 @@ spec:
           periodSeconds: 3
         readinessProbe:
           httpGet:
-            path: /api/customers/1/cart
+            path: /readiness
             port: 3400
           initialDelaySeconds: 35
           periodSeconds: 10

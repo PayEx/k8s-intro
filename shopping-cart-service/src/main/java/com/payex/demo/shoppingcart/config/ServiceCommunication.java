@@ -11,6 +11,8 @@ public class ServiceCommunication {
   RestTemplate customerRegistry(RestTemplateBuilder builder, AppConfig config) {
     return builder
         .rootUri(config.getCustomerRegistryBaseUrl())
+        .setConnectTimeout(2000)
+        .setReadTimeout(10_000)
         .build();
   }
 }
