@@ -1,5 +1,11 @@
 # Cheatsheat for demo
 
+## (pre-setup)
+Set up nginx/cert-manager
+
+1. `cd 02-scripts`
+2. `./setup-helm.sh`
+
 ## simple-service
 1. Create a deployment: `kubectl apply -f deployments/simple-service.yml`
 2. Expose a pod: `kubectl port-forward simple-service-<someid> 9000:9000`
@@ -23,3 +29,8 @@
 
 1. Deploy config: `kubectl apply -f configmaps/shopping-cart-config.yml`
 2. Deploy service: `kubectl apply -f deployments/shopping-cart-service.yml -f services/shopping-cart-service.yml`
+
+## dashboard
+
+1. Deploy service `kubectl apply -f deployments/dashboard.yml -f services/dashboard.yml`
+2. Visit `https://dashboard.koderiet.org`

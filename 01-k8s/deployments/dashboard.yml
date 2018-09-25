@@ -1,0 +1,33 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: dashboard
+  name: dashboard
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: dashboard
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: dashboard
+        version: v1
+    spec:
+      containers:
+      - image: evenh/dashboard
+        name: dashboard
+        ports:
+        - containerPort: 3000
+        resources:
+          limits:
+            cpu: "0.5"
+            memory: "128Mi"
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 3000
+          initialDelaySeconds: 5
+          periodSeconds: 3
