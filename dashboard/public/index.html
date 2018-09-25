@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="//design.payex.com/v/0.10.20/styles/px.css" />
+    <link rel="stylesheet" href="//design.payex.com/v/0.11.0/styles/px.css" />
     <title>Customer Dashboard</title>
 </head>
 <body ng-cloak>
@@ -102,26 +102,17 @@
                         </div>
                     </form>
                     
+                    
                     <div ng-if="cart.items.length > 0">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr ng-repeat="item in cart.items">
-                                    <td>{{ item }}</td>
-                                    <td>
-                                        <button class="btn btn-danger" type="button" ng-click="delete(item)">
-                                            <i class="material-icons">delete</i>
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <hr />
+                        <ul class="item-list" >
+                            <li ng-repeat="item in cart.items">
+                                <span>{{ item }}</span>
+                                <button class="btn btn-danger btn-xs" type="button" ng-click="delete(item)"><i class="material-icons">delete</i></button>
+                            </li>
+                        </ul>
                     </div>
+                    
                 </div>
             </div>
         </div>
@@ -130,7 +121,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.2/angular.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.2/angular-loader.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.2/angular-resource.min.js"></script>
-    <script src="//design.payex.com/v/0.10.20/scripts/px-script.js"></script>
+    <script src="//design.payex.com/v/0.11.0/scripts/px-script.js"></script>
     <script src="/customers.js"></script>
 </body>
 </html>
