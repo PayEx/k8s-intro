@@ -18,6 +18,7 @@ spec:
     spec:
       containers:
       - image: evenh/shopping-cart-service:1.0.0
+        imagePullPolicy: Always
         name: shopping-cart-service
         env:
         - name: SPRING_DATA_MONGODB_URI
@@ -46,10 +47,4 @@ spec:
             path: /actuator/health
             port: 3400
           initialDelaySeconds: 30
-          periodSeconds: 3
-        readinessProbe:
-          httpGet:
-            path: /readiness
-            port: 3400
-          initialDelaySeconds: 35
-          periodSeconds: 10
+          periodSeconds: 5

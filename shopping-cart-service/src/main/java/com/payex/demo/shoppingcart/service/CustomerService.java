@@ -50,7 +50,11 @@ public class CustomerService {
   }
 
   public boolean isAvailable() {
-    final ResponseEntity<String> status = customerRegistry.getForEntity("/health", String.class);
-    return status.getStatusCode().is2xxSuccessful();
+    try {
+      final ResponseEntity<String> status = customerRegistry.getForEntity("/health", String.class);
+      return status.getStatusCode().is2xxSuccessful();
+    } catch (Exception anyException) {
+      return false;
+    }
   }
 }
