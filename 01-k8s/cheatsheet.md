@@ -33,4 +33,5 @@ Set up nginx/cert-manager
 ## dashboard
 
 1. Deploy service `kubectl apply -f deployments/dashboard.yml -f services/dashboard.yml`
+2. Add ingress `kubectl apply -f ingress/dashboard.yml`
 2. Visit `https://dashboard.koderiet.org`
