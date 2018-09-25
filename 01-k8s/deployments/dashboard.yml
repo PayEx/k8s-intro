@@ -17,7 +17,7 @@ spec:
         version: v1
     spec:
       containers:
-      - image: evenh/dashboard
+      - image: evenh/dashboard:1.0.0
         name: dashboard
         ports:
         - containerPort: 3000

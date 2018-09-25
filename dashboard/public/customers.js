@@ -50,7 +50,7 @@ dashboard.service('CartService', ['$q', '$resource', function($q, $resource) {
 
 dashboard.controller('CustomerCtrl', ['$scope', '$rootScope', 'CustomerService', function($scope, $rootScope, CustomerService) {
     $scope.customers = [];
-    $scope.customer = {};
+    $scope.customer = { firstName: '', lastName: '' };
     
     var refreshState = function() {
         CustomerService.getAll()
@@ -86,7 +86,7 @@ dashboard.controller('CustomerCtrl', ['$scope', '$rootScope', 'CustomerService',
         
         CustomerService.add(customer)
         .then(function(response) {
-            $scope.customer = {};
+            $scope.customer = { firstName: '', lastName: '' };
             px.toast({ html: 'Successfully added customer', type: 'success' });
             refreshState();
         })

@@ -44,7 +44,7 @@
                         </div>
                         <footer>
                             <button class="btn btn-secondary" type="button" data-dialog-close="new-customer-dialog">Cancel</button>
-                            <button class="btn btn-primary" type="button" ng-click="add(customer)" data-dialog-close="new-customer-dialog">Add customer</button>
+                            <button class="btn btn-primary" type="button" ng-click="add(customer)" data-dialog-close="new-customer-dialog" ng-disabled="customer.firstName.length == 0 || customer.lastName.length == 0">Add customer</button>
                         </footer>
                     </section>
                 </div>
