@@ -149,13 +149,14 @@ Kubernetes
 
 # Takk!
 
-Ressurser:
+Offentlige ressurser
 
+- [Kildekode for denne introduksjonen](https://github.com/PayEx/k8s-intro)
 - [The Illustrated Children's Guide to Kubernetes](https://www.youtube.com/watch?v=4ht22ReBjno)
 - [kubelist - Your curated weekly kubernetes information reconciliation loop](https://kubelist.com/issue/latest)
 - [Evry: Kubernetes Workshop :thumbsup:](https://github.com/evry-bergen/kubernetes-workshop)
 
-PayEx-ressurser:
+Interne PayEx-ressurser
 
 - [Helge Dahl: Kubernetes at a glance](https://wiki.payex.com/xwiki/bin/view/Blog/Kubernetes%20at%20a%20glance)
 - `#dev-containers` på ![inline](./img/slack-logo.png)
