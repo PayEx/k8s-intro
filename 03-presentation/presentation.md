@@ -11,17 +11,18 @@ footer: PayEx Group © 2018
 [.slidenumber: false]
 ---
 
-# Hva er ![inline](./img/kube-logo.png)?
+# Kubernetes ![inline](./img/kube-logo.png)?
 
 ---
 
-# Hva er Kubernetes?
+# Hva er Kubernetes ![inline](./img/kube-logo.png)?
 
 - Orkestrering for containere og tilhørende ressurser
 - Deklarativ approach
-- API node + worker nodes = cluster
+- Cluster med ulike komponenter
 - Utviklet av Google i Go (2014), nå et CNCF-prosjekt m/Red Hat, Microsoft og andre.
 - Kan kjøre på GCP, AWS, Azure, OpenStack, vSphere og bare-metal
+- Finnes i ulike distribusjoner, f.eks. OpenShift
 
 ^ k8s tilbyr et sentralt sted for å definere containere (som kan kjøre sammen), eksponere tjenester for interne/eksterne konsumenter, konfigurasjonsstyring, skalering av instanser etc.
 - Alle handlinger som utføres er deklarativt beskrevet i YAML. k8s differ ønsket state mot current state og korrigerer.
@@ -71,6 +72,17 @@ Kubernetes
 
 ---
 
+# Viktige begreper
+
+| Begrep         | Forklaring                                        |
+|----------------|---------------------------------------------------|
+| `pod`          | abstraksjon for en eller flere containere         |
+| `service`      | en permanent måte å aksessere flyktige pods på    |
+| `volume`       | et sted man kan lagre persistente data            |
+| `namespace`    | mekanisme for å scope ressurser på                |
+
+---
+
 # Arkitektur [^1]
 ![fit right 70%](./img/kube-architecture.png)
 
@@ -103,17 +115,6 @@ Kubernetes
 - Logging skal kun sendes til konsollen. Da kan Kubernetes eller annet runtime miljø samle inn logger på en standardisert måte, uavhengig av teknologi. Herfra kan det sendes til f.eks. ElasticSearch.
 
 [^2]: Dette er ikke harde krav, men gjør det lettere å håndtere din applikasjon i en containerisert/orkestrert verden. Fra [The Twelve Factor App methodology](https://en.wikipedia.org/wiki/Twelve-Factor_App_methodology).
-
----
-
-# Viktige begreper
-
-| Begrep         | Forklaring                             |
-|----------------|---------------------------------------------------|
-| `pod`          | abstraksjon for en eller flere containere         |
-| `service`      | en permanent måte å aksessere flyktige pods på    |
-| `volume`       | et sted man kan lagre persistente data            |
-| `namespace`    | mekanisme for å scope ressurser på                |
 
 ---
 
