@@ -24,3 +24,7 @@ In order to reproduce the examples demonstrated, you will need to have the follo
 ├── shopping-cart-service      # Java: Manages carts for customers
 └── simple-service             # Go: A simple service that returns a counter value
 ```
+
+## Slides
+
+The slides used in the presentation is [available as a PDF](./03-presentation/presentation.pdf).
