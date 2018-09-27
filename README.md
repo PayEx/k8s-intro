@@ -2,6 +2,8 @@
 
 This repository contains some sample services, resource definitions and scripts used to demonstrate a small subset of what Kubernetes can do.
 
+[![](http://img.youtube.com/vi/PgRWfRI5an0/0.jpg)](http://www.youtube.com/watch?v=PgRWfRI5an0 "Introduksjon til Kubernetes")
+
 ## Local requirements
 
 In order to reproduce the examples demonstrated, you will need to have the following:
