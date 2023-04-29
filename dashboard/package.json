@@ -11,6 +11,6 @@
     "express-http-proxy": "^0.7.1",
     "zipkin": "^0.14.2",
     "zipkin-instrumentation-express": "^0.14.2",
-    "zipkin-transport-http": "^0.14.2"
+    "zipkin-transport-http": "^0.22.0"
   }
 }
